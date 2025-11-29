@@ -38,8 +38,8 @@
   <script>
     // --- STEP 1: Add your memories here ---
     const memories = [
-      "Remember the soft sunlight in June when we walked barefoot in the grass.",
-      "A cup of tea shared with someone who really listened.",
+      "When we were in Bend and you were so terrified that you hit that biker - key moment for me",
+      "Wait take one more",
       "The first time you tried something new and felt proud.",
       "A quiet evening, just listening to your favorite song.",
       "Laughing until your stomach hurt over something silly."
@@ -47,9 +47,16 @@
     ];
 
     // --- STEP 2: Pick memory of the day ---
-    const today = new Date();
-    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-    const index = dayOfYear % memories.length;
+    // --- Set your start date (YYYY, M-1, D) ---
+const startDate = new Date(2025, 11, 28); // Example: Nov 28, 2025
+const today = new Date();
+
+// Calculate how many days have passed since startDate
+const daysSinceStart = Math.floor((today - startDate) / 86400000);
+
+// Pick memory based on days since start date
+const index = ((daysSinceStart % memories.length) + memories.length) % memories.length;
+
 
     document.getElementById("dailyMemory").textContent = memories[index];
   </script>
