@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summer of Love</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f7f4ef;
+      font-family: 'Helvetica Neue', sans-serif;
+      color: #333;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      margin-bottom: 20px;
+    }
+
+    .caption {
+      font-size: 1.1rem;
+      line-height: 1.4;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img id="dailyImage" src="" alt="Daily Memory" />
+    <div class="caption" id="dailyCaption"></div>
+  </div>
+
+  <script>
+    const memories = [
+      { image: "memories/photo1.jpg", caption: "First memory" },
+      { image: "memories/photo2.jpg", caption: "Second memory" },
+      { image: "memories/photo3.jpg", caption: "Third memory" }
+      // Add more here
+    ];
+
+    // Calculate the day of the year
+    const today = new Date();
+    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+    const index = dayOfYear % memories.length;
+
+    document.getElementById("dailyImage").src = memories[index].image;
+    document.getElementById("dailyCaption").textContent = memories[index].caption;
+  </script>
+</body>
+</html>
