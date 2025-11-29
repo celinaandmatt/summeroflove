@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Summer of Love</title>
   <style>
     body {
@@ -12,52 +12,46 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f7f4ef;
-      font-family: 'Helvetica Neue', sans-serif;
+      background: #fff0f5;
+      font-family: 'Georgia', serif;
       color: #333;
-    }
-
-    .container {
       text-align: center;
-      max-width: 600px;
       padding: 20px;
     }
 
-    img {
-      max-width: 100%;
+    .memory-box {
+      max-width: 600px;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-      margin-bottom: 20px;
-    }
-
-    .caption {
-      font-size: 1.1rem;
-      line-height: 1.4;
-      opacity: 0.85;
+      background: #fff8f0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img id="dailyImage" src="" alt="Daily Memory" />
-    <div class="caption" id="dailyCaption"></div>
+  <div class="memory-box" id="dailyMemory">
+    Loading memory...
   </div>
 
   <script>
+    // --- STEP 1: Add your memories here ---
     const memories = [
-      { image: "memories/photo1.jpg", caption: "First memory" },
-      { image: "memories/photo2.jpg", caption: "Second memory" },
-      { image: "memories/photo3.jpg", caption: "Third memory" }
-      // Add more here
+      "Remember the soft sunlight in June when we walked barefoot in the grass.",
+      "A cup of tea shared with someone who really listened.",
+      "The first time you tried something new and felt proud.",
+      "A quiet evening, just listening to your favorite song.",
+      "Laughing until your stomach hurt over something silly."
+      // Add more memories as you like
     ];
 
-    // Calculate the day of the year
+    // --- STEP 2: Pick memory of the day ---
     const today = new Date();
     const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
     const index = dayOfYear % memories.length;
 
-    document.getElementById("dailyImage").src = memories[index].image;
-    document.getElementById("dailyCaption").textContent = memories[index].caption;
+    document.getElementById("dailyMemory").textContent = memories[index];
   </script>
 </body>
 </html>
