@@ -8,7 +8,7 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Favicon -->
+  <!-- Favicon (replace with your emoji sun favicon file if uploaded) -->
   <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
@@ -26,15 +26,16 @@
       padding: 20px;
     }
 
-    /* Outer box */
+    /* Outer box with "Today's Memory" title */
     .outer-box {
       max-width: 700px;
       padding: 30px;
       border-radius: 20px;
-      background: #1b3b11;
+      background: #1b3b11; /* slightly lighter green */
       box-shadow: 0 6px 18px rgba(0,0,0,0.2);
     }
 
+    /* Main header */
     .main-title {
       font-size: 2rem;
       font-weight: 700;
@@ -43,13 +44,13 @@
       letter-spacing: 1px;
     }
 
-    /* Inner memory box */
+    /* Inner memory box containing title + content */
     .memory-box {
       font-size: 1.3rem;
       line-height: 1.6;
       padding: 25px;
       border-radius: 16px;
-      background: #2e6417;
+      background: #2e6417; /* darker green */
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
@@ -57,7 +58,7 @@
       font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 15px;
-      text-decoration: none;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -65,16 +66,15 @@
   <div class="outer-box">
     <div class="main-title">Today's Memory</div>
     <div class="memory-box">
-      <div class="memory-title" id="memoryTitle"></div>
-      <div id="dailyMemory"></div>
+      <div class="memory-title" id="memoryTitle">Loading title...</div>
+      <div id="dailyMemory">Loading memory...</div>
     </div>
   </div>
 
-  <!-- Script at bottom of body ensures elements exist -->
   <script>
-    // --- Memories array: title + content ---
+    // --- Memories array: each memory has a title and content ---
     const memories = [
-      { title: "Bike Accident Anxiety", content: "When we were in Bend and you were so terrified that you hit that biker - key moment for me" },
+    { title: "Bike Accident Anxiety", content: "When we were in Bend and you were so terrified that you hit that biker - key moment for me" },
       { title: "One More", content: "Wait take one more" },
       { title: "Attachment Style Quiz", content: "The first time you tried something new and felt proud." },
       { title: "Tahoe Phone Call", content: "A quiet evening, just listening to your favorite song." },
@@ -84,17 +84,17 @@
       // Add more memories here
     ];
 
-    // --- Start date for daily rotation ---
+    // --- Set the start date (YYYY, M-1, D) ---
     const startDate = new Date(2025, 10, 28); // Nov 28, 2025
     const today = new Date();
 
     // Calculate days since start date
     const daysSinceStart = Math.floor((today - startDate) / 86400000);
 
-    // Determine which memory to show today
+    // Pick memory based on days since start date
     const index = ((daysSinceStart % memories.length) + memories.length) % memories.length;
 
-    // Display today's memory title and content
+    // Display today's memory title and content inside the memory-box
     document.getElementById("memoryTitle").textContent = memories[index].title;
     document.getElementById("dailyMemory").textContent = memories[index].content;
   </script>
