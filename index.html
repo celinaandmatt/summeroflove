@@ -26,7 +26,7 @@
       padding: 20px;
     }
 
-    /* Outer box with title */
+    /* Outer box with "Today's Memory" title */
     .outer-box {
       max-width: 700px;
       padding: 30px;
@@ -35,7 +35,7 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.2);
     }
 
-    /* Today's Memory header */
+    /* Main header */
     .main-title {
       font-size: 2rem;
       font-weight: 700;
@@ -44,15 +44,7 @@
       letter-spacing: 1px;
     }
 
-    /* Memory title for each memory */
-    .memory-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      text-decoration: none;
-    }
-
-    /* Inner memory box */
+    /* Inner memory box containing title + content */
     .memory-box {
       font-size: 1.3rem;
       line-height: 1.6;
@@ -61,23 +53,34 @@
       background: #2e6417; /* darker green */
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
+
+    .memory-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
   <div class="outer-box">
     <div class="main-title">Today's Memory</div>
-    <div class="memory-title" id="memoryTitle">Loading title...</div>
-    <div class="memory-box" id="dailyMemory">Loading memory...</div>
+    <div class="memory-box">
+      <div class="memory-title" id="memoryTitle">Loading title...</div>
+      <div id="dailyMemory">Loading memory...</div>
+    </div>
   </div>
 
   <script>
     // --- Memories array: each memory has a title and content ---
     const memories = [
       { title: "Bike Accident Anxiety", content: "When we were in Bend and you were so terrified that you hit that biker - key moment for me" },
-      { title: "Take One More", content: "Wait take one more" },
-      { title: "Trying Something New", content: "The first time you tried something new and felt proud." },
-      { title: "Quiet Evening", content: "A quiet evening, just listening to your favorite song." },
-      { title: "Laughing Fit", content: "Laughing until your stomach hurt over something silly." }
+      { title: "One More", content: "Wait take one more" },
+      { title: "Attachment Style Quiz", content: "The first time you tried something new and felt proud." },
+      { title: "Tahoe Phone Call", content: "A quiet evening, just listening to your favorite song." },
+      { title: "Valentine's Day 2024", content: "Laughing until your stomach hurt over something silly." }
+      { title: "Back to Back", content: "Laughing until your stomach hurt over something silly." }
+    { title: "Down in the Valley", content: "Laughing until your stomach hurt over something silly." }
       // Add more memories here
     ];
 
@@ -85,13 +88,13 @@
     const startDate = new Date(2025, 10, 28); // Nov 28, 2025
     const today = new Date();
 
-    // Calculate how many days have passed since startDate
+    // Calculate days since start date
     const daysSinceStart = Math.floor((today - startDate) / 86400000);
 
     // Pick memory based on days since start date
     const index = ((daysSinceStart % memories.length) + memories.length) % memories.length;
 
-    // Display today's memory title and content
+    // Display today's memory title and content inside the memory-box
     document.getElementById("memoryTitle").textContent = memories[index].title;
     document.getElementById("dailyMemory").textContent = memories[index].content;
   </script>
